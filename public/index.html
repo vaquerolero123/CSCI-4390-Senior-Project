@@ -3,8 +3,12 @@
   <head>
     <title>Example of the Authorization Code flow with Spotify</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="index.css">
     <style type="text/css">
       #login, #loggedin {
+        display: none;
+      }
+      #oauth-template {
         display: none;
       }
       .text-overflow {
@@ -13,13 +17,20 @@
         white-space: nowrap;
         width: 500px;
       }
+      .top-artists {
+        display: inline-block;
+        text-align: center;
+      }
+      #login {
+        text-align: center;
+      }
     </style>
   </head>
 
   <body>
     <div class="container">
       <div id="login">
-        <h1>This is an example of the Authorization Code flow</h1>
+        <h1>Welcome to Topify!</h1>
         <a href="/login" class="btn btn-primary">Log in with Spotify</a>
       </div>
       <div id="loggedin">
@@ -27,43 +38,92 @@
         </div>
         <div id="oauth">
         </div>
-        <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
       </div>
     </div>
 
     <script id="user-profile-template" type="text/x-handlebars-template">
-      <h1>Logged in as {{display_name}}</h1>
+      <h1 id="home-page">Home Page</h1>
       <div class="media">
         <div class="pull-left">
-          <img class="media-object" width="150" src="{{images.0.url}}" />
+          <img class="profile-picture" width="75" src="{{images.0.url}}" />
+          <p>{{display_name}}</p>
         </div>
-        <div class="media-body">
-          <dl class="dl-horizontal">
-            <dt>Display name</dt><dd class="clearfix">{{display_name}}</dd>
-            <dt>Id</dt><dd>{{id}}</dd>
-            <dt>Email</dt><dd>{{email}}</dd>
-            <dt>Spotify URI</dt><dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a></dd>
-            <dt>Link</dt><dd><a href="{{href}}">{{href}}</a></dd>
-            <dt>Profile Image</dt><dd class="clearfix"><a href="{{images.0.url}}">{{images.0.url}}</a></dd>
-            <dt>Country</dt><dd>{{country}}</dd>
-          </dl>
+        <div class="pull-right">
+          <button id="button short-term">4 Weeks</button>
+          <button id="button medium-term">6 Months</button>
+          <button id="button long-term">All Time</button>
         </div>
+      </div>
+      <div class="topArtists">
+        <h3>Your Top Artists</h3>
+        <figure class="top-artists" id="topArtist1">
+          <img id="top-artist-img1" width="150" src="music-placeholder.png" />
+          <button id="recommend-btn1">Find New Artists</button>
+          <figcaption id="top-artist-name1"><p id="top-artists-name1">Top_Artist_Name_1</p></figcaption>
+        </figure>
+        <figure class="top-artists" id="topArtist2">
+          <img id="top-artist-img2" width="150" src="music-placeholder.png" />
+          <button id="recommend-btn2">Find New Artists</button>
+          <figcaption id="top-artist-name2"><p>Top_Artist_Name_2</p></figcaption>
+        </figure>
+        <figure class="top-artists" id="topArtist3">
+          <img id="top-artist-img3" width="150" src="music-placeholder.png" />
+          <button id="recommend-btn3">Find New Artists</button>
+          <figcaption id="top-artist-name3"><p id>Top_Artist_Name_3</p></figcaption>
+        </figure>
+        <figure class="top-artists" id="topArtist4">
+          <img id="top-artist-img4" width="150" src="music-placeholder.png" />
+          <button id="recommend-btn4">Find New Artists</button>
+          <figcaption id="top-artist-name4"><p>Top_Artist_Name_4</p></figcaption>
+        </figure>
+        <figure class="top-artists" id="topArtist5">
+          <img id="top-artist-img5" width="150" src="music-placeholder.png" />
+          <button id="recommend-btn5">Find New Artists</button>
+          <figcaption id="top-artist-name5"><p>Top_Artist_Name_5</p></figcaption>
+        </figure>
+      </div>
+      <div class="topSongs">
+        <table style="width: 100%">
+          <tr>
+            <th></th>
+            <th style="width: 85%">Song Information</th>
+          </tr>
+          <tr id="top-song-img1">
+            <td><img width="50" src="top-song-placeholder.png" /></td>
+            <td><p>Song_Title - Artist</p></td>
+            <td><button class="pull-right">Generate Playlist</button></td>
+          </tr>
+          <tr id="top-song-img2">
+            <td><img width="50" src="top-song-placeholder.png" /></td>
+            <td><p>Song_Title - Artist</p></td>
+            <td><button>Generate Playlist</button></td>
+          </tr>
+          <tr id="top-song-img3">
+            <td><img width="50" src="top-song-placeholder.png" /></td>
+            <td><p>Song_Title - Artist</p></td>
+            <td><button>Generate Playlist</button></td>
+          </tr>
+          <tr id="top-song-img4">
+            <td><img width="50" src="top-song-placeholder.png" /></td>
+            <td><p>Song_Title - Artist</p></td>
+            <td><button>Generate Playlist</button></td>
+          </tr>
+          <tr id="top-song-img5">
+            <td><img width="50" src="top-song-placeholder.png" /></td>
+            <td><p>Song_Title - Artist</p></td>
+            <td><button>Generate Playlist</button></td>
+          </tr>
+        </table>
       </div>
     </script>
 
     <script id="oauth-template" type="text/x-handlebars-template">
-      <h2>oAuth info</h2>
-      <dl class="dl-horizontal">
-        <dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>
-        <dt>Refresh token</dt><dd class="text-overflow">{{refresh_token}}</dd>
-      </dl>
     </script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script>
       (function() {
-
         /**
          * Obtains parameters from the hash of the URL
          * @return Object
@@ -119,7 +179,6 @@
               $('#login').show();
               $('#loggedin').hide();
           }
-
           document.getElementById('obtain-new-token').addEventListener('click', function() {
             $.ajax({
               url: '/refresh_token',

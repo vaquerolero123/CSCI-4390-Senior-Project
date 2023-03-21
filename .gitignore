@@ -87,4 +87,3 @@ lerna-debug.log
 # System Files
 .DS_Store
 Thumbs.db
-api_tokens.env
