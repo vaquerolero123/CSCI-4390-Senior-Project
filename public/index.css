@@ -3,8 +3,8 @@
 }
 #recommend-btn1{
     position: absolute;
-    top: 30%;
-    left: 24%;
+    top: 45%;
+    left: 6%;
     opacity: 0;
 }
 #topArtist1:hover button{
@@ -16,8 +16,8 @@
 }
 #recommend-btn2{
     position: absolute;
-    top: 30%;
-    left: 31%;
+    top: 45%;
+    left: 18%;
     opacity: 0;
 }
 #topArtist2:hover button{
@@ -29,8 +29,8 @@
 }
 #recommend-btn3{
     position: absolute;
-    top: 30%;
-    left: 38%;
+    top: 45%;
+    left: 30%;
     opacity: 0;
 }
 #topArtist3:hover button{
@@ -42,8 +42,8 @@
 }
 #recommend-btn4{
     position: absolute;
-    top: 30%;
-    left: 46%;
+    top: 45%;
+    left: 43%;
     opacity: 0;
 }
 #topArtist4:hover button{
@@ -55,8 +55,8 @@
 }
 #recommend-btn5{
     position: absolute;
-    top: 30%;
-    left: 53%;
+    top: 45%;
+    left: 55%;
     opacity: 0;
 }
 #topArtist5:hover button{
