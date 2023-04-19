@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Example of the Authorization Code flow with Spotify</title>
+    <title>Topify</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="index.css">
     <style type="text/css">
@@ -36,6 +36,10 @@
       <div id="loggedin">
         <div id="user-profile">
         </div>
+        <div id="user-top-artists">
+        </div>
+        <div id="user-top-songs">
+        </div>
         <div id="oauth">
         </div>
       </div>
@@ -54,34 +58,38 @@
           <button id="button long-term">All Time</button>
         </div>
       </div>
-      <div class="topArtists">
+    </script>
+    <script id="user-top-artists-template" type="text/x-handlebars-template">
+       <div class="topArtists">
         <h3>Your Top Artists</h3>
         <figure class="top-artists" id="topArtist1">
-          <img id="top-artist-img1" width="150" src="music-placeholder.png" />
+          <img id="top-artist-img1" width="150" height="150" src="{{items.0.images.0.url}}" />
           <button id="recommend-btn1">Find New Artists</button>
-          <figcaption id="top-artist-name1"><p id="top-artists-name1">Top_Artist_Name_1</p></figcaption>
+          <figcaption id="top-artist-name1"><p id="top-artists-name1">{{items.0.name}}</p></figcaption>
         </figure>
         <figure class="top-artists" id="topArtist2">
-          <img id="top-artist-img2" width="150" src="music-placeholder.png" />
+          <img id="top-artist-img2" width="150" height="150" src="{{items.1.images.0.url}}" />
           <button id="recommend-btn2">Find New Artists</button>
-          <figcaption id="top-artist-name2"><p>Top_Artist_Name_2</p></figcaption>
+          <figcaption id="top-artist-name2"><p>{{items.1.name}}</p></figcaption>
         </figure>
         <figure class="top-artists" id="topArtist3">
-          <img id="top-artist-img3" width="150" src="music-placeholder.png" />
+          <img id="top-artist-img3" width="150" height="150" src="{{items.2.images.0.url}}" />
           <button id="recommend-btn3">Find New Artists</button>
-          <figcaption id="top-artist-name3"><p id>Top_Artist_Name_3</p></figcaption>
+          <figcaption id="top-artist-name3"><p id>{{items.2.name}}</p></figcaption>
         </figure>
         <figure class="top-artists" id="topArtist4">
-          <img id="top-artist-img4" width="150" src="music-placeholder.png" />
+          <img id="top-artist-img4" width="150" height="150" src="{{items.3.images.0.url}}" />
           <button id="recommend-btn4">Find New Artists</button>
-          <figcaption id="top-artist-name4"><p>Top_Artist_Name_4</p></figcaption>
+          <figcaption id="top-artist-name4"><p>{{items.3.name}}</p></figcaption>
         </figure>
         <figure class="top-artists" id="topArtist5">
-          <img id="top-artist-img5" width="150" src="music-placeholder.png" />
+          <img id="top-artist-img5" width="150" height="150" src="{{items.4.images.0.url}}" />
           <button id="recommend-btn5">Find New Artists</button>
-          <figcaption id="top-artist-name5"><p>Top_Artist_Name_5</p></figcaption>
+          <figcaption id="top-artist-name5"><p>{{items.4.name}}</p></figcaption>
         </figure>
       </div>
+    </script>
+    <script id="user-top-songs-template" type="text/x-handlebars-template">
       <div class="topSongs">
         <table style="width: 100%">
           <tr>
@@ -89,36 +97,36 @@
             <th style="width: 85%">Song Information</th>
           </tr>
           <tr id="top-song-img1">
-            <td><img width="50" src="top-song-placeholder.png" /></td>
-            <td><p>Song_Title - Artist</p></td>
+            <td><img width="50" src="{{items.0.album.images.0.url}}" /></td>
+            <td><p>{{items.0.name}} - {{items.0.artists.0.name}}</p></td>
             <td><button class="pull-right">Generate Playlist</button></td>
           </tr>
           <tr id="top-song-img2">
-            <td><img width="50" src="top-song-placeholder.png" /></td>
-            <td><p>Song_Title - Artist</p></td>
+            <td><img width="50" src="{{items.1.album.images.0.url}}" /></td>
+            <td><p>{{items.1.name}} - {{items.1.artists.0.name}}</p></td>
             <td><button>Generate Playlist</button></td>
           </tr>
           <tr id="top-song-img3">
-            <td><img width="50" src="top-song-placeholder.png" /></td>
-            <td><p>Song_Title - Artist</p></td>
+            <td><img width="50" src="{{items.2.album.images.0.url}}" /></td>
+            <td><p>{{items.2.name}} - {{items.2.artists.0.name}}</p></td>
             <td><button>Generate Playlist</button></td>
           </tr>
           <tr id="top-song-img4">
-            <td><img width="50" src="top-song-placeholder.png" /></td>
-            <td><p>Song_Title - Artist</p></td>
+            <td><img width="50" src="{{items.3.album.images.0.url}}" /></td>
+            <td><p>{{items.3.name}} - {{items.3.artists.0.name}}</p></td>
             <td><button>Generate Playlist</button></td>
           </tr>
           <tr id="top-song-img5">
-            <td><img width="50" src="top-song-placeholder.png" /></td>
-            <td><p>Song_Title - Artist</p></td>
+            <td><img width="50" src="{{items.4.album.images.0.url}}" /></td>
+            <td><p>{{items.4.name}} - {{items.4.artists.0.name}}</p></td>
             <td><button>Generate Playlist</button></td>
           </tr>
         </table>
       </div>
     </script>
-
     <script id="oauth-template" type="text/x-handlebars-template">
     </script>
+    
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
@@ -141,6 +149,14 @@
         var userProfileSource = document.getElementById('user-profile-template').innerHTML,
             userProfileTemplate = Handlebars.compile(userProfileSource),
             userProfilePlaceholder = document.getElementById('user-profile');
+
+        var userTopArtistSource = document.getElementById('user-top-artists-template').innerHTML, 
+            userTopArtistTemplate = Handlebars.compile(userTopArtistSource), 
+            userTopArtistPlaceholder = document.getElementById('user-top-artists');
+
+        var userTopSongsSource = document.getElementById('user-top-songs-template').innerHTML, 
+            userTopSongsTemplate = Handlebars.compile(userTopSongsSource), 
+            userTopSongsPlaceholder = document.getElementById('user-top-songs');
 
         var oauthSource = document.getElementById('oauth-template').innerHTML,
             oauthTemplate = Handlebars.compile(oauthSource),
@@ -169,6 +185,30 @@
                 },
                 success: function(response) {
                   userProfilePlaceholder.innerHTML = userProfileTemplate(response);
+
+                  $('#login').hide();
+                  $('#loggedin').show();
+                }
+            });
+            $.ajax({
+                url: 'https://api.spotify.com/v1/me/top/artists',
+                headers: {
+                  'Authorization': 'Bearer ' + access_token
+                },
+                success: function(response) {
+                  userTopArtistPlaceholder.innerHTML = userTopArtistTemplate(response);
+
+                  $('#login').hide();
+                  $('#loggedin').show();
+                }
+            });
+            $.ajax({
+                url: 'https://api.spotify.com/v1/me/top/tracks',
+                headers: {
+                  'Authorization': 'Bearer ' + access_token
+                },
+                success: function(response) {
+                  userTopSongsPlaceholder.innerHTML = userTopSongsTemplate(response);
 
                   $('#login').hide();
                   $('#loggedin').show();
