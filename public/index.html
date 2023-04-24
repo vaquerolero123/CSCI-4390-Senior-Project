@@ -117,9 +117,8 @@
       </div>
     </script>
 
-    <script id="oauth-template" type="text/x-handlebars-template">
-    </script>
-
+    <script id="oauth-template" type="text/x-handlebars-template"></script>
+  
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script>
@@ -179,6 +178,7 @@
               $('#login').show();
               $('#loggedin').hide();
           }
+          document.getElementById("button short-term").addEventListener('click', function() {console.log("Hello")});
           document.getElementById('obtain-new-token').addEventListener('click', function() {
             $.ajax({
               url: '/refresh_token',
@@ -193,6 +193,7 @@
               });
             });
           }, false);
+          
         }
       })();
     </script>
