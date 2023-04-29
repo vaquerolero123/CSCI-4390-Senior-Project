@@ -1,7 +1,9 @@
 <!doctype html>
 <html>
   <head>
+
     <title>Topify</title>
+
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="index.css">
     <style type="text/css">
@@ -27,7 +29,7 @@
     </style>
   </head>
 
-  <body>
+  <body style="background-color: mediumseagreen;">
     <div class="container">
       <div id="login">
         <h1>Welcome to Topify!</h1>
@@ -56,7 +58,8 @@
           <button id="button short-term">4 Weeks</button>
           <button id="button medium-term">6 Months</button>
           <button id="button long-term">All Time</button>
-        </div>
+          <button onclick="logout()" class="btn btn-primary">Logout</a>
+	</div>
       </div>
     </script>
     <script id="user-top-artists-template" type="text/x-handlebars-template">
@@ -124,13 +127,22 @@
         </table>
       </div>
     </script>
+
+  
+
     <script id="oauth-template" type="text/x-handlebars-template">
     </script>
     
 
+
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script>
+
+      function logout(){
+        window.location.replace('https://accounts.spotify.com/logout?continue=https://accounts.spotify.com/en/login&redirect_uri=http://http://topifi.net/');
+      }
+
       (function() {
         /**
          * Obtains parameters from the hash of the URL
@@ -219,6 +231,7 @@
               $('#login').show();
               $('#loggedin').hide();
           }
+          document.getElementById("button short-term").addEventListener('click', function() {console.log("Hello")});
           document.getElementById('obtain-new-token').addEventListener('click', function() {
             $.ajax({
               url: '/refresh_token',
@@ -233,6 +246,7 @@
               });
             });
           }, false);
+          
         }
       })();
     </script>
