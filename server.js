@@ -6,8 +6,11 @@ var cookieParser = require('cookie-parser');
 
 var client_id = '94a06dda379d4bcc88f457ecf3da21a0'; // Your client id
 var client_secret = '8a317327f4a64085b77c69a1fc85a2a5'; // Your secret
+
 var redirect_uri = 'http://topifi.net/callback'; // Your redirect uri
 //var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri local work
+
+
 
 /**
  * Generates a random string containing numbers and letters
